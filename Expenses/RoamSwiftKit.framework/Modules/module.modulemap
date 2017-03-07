@@ -1,0 +1,10 @@
+framework module RoamSwiftKit {
+  umbrella header "RoamSwiftKit.h"
+
+  export *
+  module * { export * }
+}
+
+module RoamSwiftKit.Swift {
+    header "RoamSwiftKit-Swift.h"
+}
