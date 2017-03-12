@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FB575521E7514DE008B440D /* Account+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB575481E7514DE008B440D /* Account+CoreDataClass.swift */; };
+		3FB575531E7514DE008B440D /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB575491E7514DE008B440D /* Account+CoreDataProperties.swift */; };
+		3FB575541E7514DE008B440D /* Expense+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5754A1E7514DE008B440D /* Expense+CoreDataClass.swift */; };
+		3FB575551E7514DE008B440D /* Expense+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5754B1E7514DE008B440D /* Expense+CoreDataProperties.swift */; };
+		3FB575561E7514DE008B440D /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5754C1E7514DE008B440D /* Tag+CoreDataClass.swift */; };
+		3FB575571E7514DE008B440D /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5754D1E7514DE008B440D /* Tag+CoreDataProperties.swift */; };
+		3FB575581E7514DE008B440D /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5754E1E7514DE008B440D /* Goal+CoreDataClass.swift */; };
+		3FB575591E7514DE008B440D /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5754F1E7514DE008B440D /* Goal+CoreDataProperties.swift */; };
+		3FB5755A1E7514DE008B440D /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB575501E7514DE008B440D /* Category+CoreDataClass.swift */; };
+		3FB5755B1E7514DE008B440D /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB575511E7514DE008B440D /* Category+CoreDataProperties.swift */; };
 		871CEAA01E6E356200619F4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871CEA9F1E6E356200619F4A /* AppDelegate.swift */; };
 		871CEAA81E6E356200619F4A /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 871CEAA61E6E356200619F4A /* Expenses.xcdatamodeld */; };
 		871CEAAA1E6E356200619F4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 871CEAA91E6E356200619F4A /* Assets.xcassets */; };
@@ -35,6 +45,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3FB575481E7514DE008B440D /* Account+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+CoreDataClass.swift"; path = "Model/Account+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3FB575491E7514DE008B440D /* Account+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+CoreDataProperties.swift"; path = "Model/Account+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3FB5754A1E7514DE008B440D /* Expense+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Expense+CoreDataClass.swift"; path = "Model/Expense+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3FB5754B1E7514DE008B440D /* Expense+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Expense+CoreDataProperties.swift"; path = "Model/Expense+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3FB5754C1E7514DE008B440D /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tag+CoreDataClass.swift"; path = "Model/Tag+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3FB5754D1E7514DE008B440D /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tag+CoreDataProperties.swift"; path = "Model/Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3FB5754E1E7514DE008B440D /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Goal+CoreDataClass.swift"; path = "Model/Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3FB5754F1E7514DE008B440D /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Goal+CoreDataProperties.swift"; path = "Model/Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3FB575501E7514DE008B440D /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataClass.swift"; path = "Model/Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3FB575511E7514DE008B440D /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataProperties.swift"; path = "Model/Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		871CEA9C1E6E356200619F4A /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		871CEA9F1E6E356200619F4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		871CEAA71E6E356200619F4A /* Expenses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Expenses.xcdatamodel; sourceTree = "<group>"; };
@@ -92,6 +112,16 @@
 		871CEAB61E6E362800619F4A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3FB575481E7514DE008B440D /* Account+CoreDataClass.swift */,
+				3FB575491E7514DE008B440D /* Account+CoreDataProperties.swift */,
+				3FB5754A1E7514DE008B440D /* Expense+CoreDataClass.swift */,
+				3FB5754B1E7514DE008B440D /* Expense+CoreDataProperties.swift */,
+				3FB5754C1E7514DE008B440D /* Tag+CoreDataClass.swift */,
+				3FB5754D1E7514DE008B440D /* Tag+CoreDataProperties.swift */,
+				3FB5754E1E7514DE008B440D /* Goal+CoreDataClass.swift */,
+				3FB5754F1E7514DE008B440D /* Goal+CoreDataProperties.swift */,
+				3FB575501E7514DE008B440D /* Category+CoreDataClass.swift */,
+				3FB575511E7514DE008B440D /* Category+CoreDataProperties.swift */,
 				871CEAA61E6E356200619F4A /* Expenses.xcdatamodeld */,
 			);
 			name = Model;
@@ -192,13 +222,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB575571E7514DE008B440D /* Tag+CoreDataProperties.swift in Sources */,
 				871CEAA81E6E356200619F4A /* Expenses.xcdatamodeld in Sources */,
 				871CEAC41E6E3F6B00619F4A /* ExpensesViewController.swift in Sources */,
+				3FB575541E7514DE008B440D /* Expense+CoreDataClass.swift in Sources */,
 				871CEAA01E6E356200619F4A /* AppDelegate.swift in Sources */,
+				3FB575591E7514DE008B440D /* Goal+CoreDataProperties.swift in Sources */,
 				871CEAD11E6E690B00619F4A /* ScrollViewControllerTemplate.swift in Sources */,
 				871CEAC61E6E3F6B00619F4A /* MainViewController.swift in Sources */,
+				3FB5755B1E7514DE008B440D /* Category+CoreDataProperties.swift in Sources */,
 				871CEAC01E6E3F5D00619F4A /* AccountsViewController.swift in Sources */,
+				3FB5755A1E7514DE008B440D /* Category+CoreDataClass.swift in Sources */,
+				3FB575581E7514DE008B440D /* Goal+CoreDataClass.swift in Sources */,
+				3FB575551E7514DE008B440D /* Expense+CoreDataProperties.swift in Sources */,
+				3FB575531E7514DE008B440D /* Account+CoreDataProperties.swift in Sources */,
 				871CEAC51E6E3F6B00619F4A /* GoalsViewController.swift in Sources */,
+				3FB575561E7514DE008B440D /* Tag+CoreDataClass.swift in Sources */,
+				3FB575521E7514DE008B440D /* Account+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +402,7 @@
 				871CEAB31E6E356200619F4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

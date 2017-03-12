@@ -22,7 +22,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         
         view.addSubview(titleLabel)
         titleLabel.alignTo(edge: .top, length: 60, insets: UIEdgeInsets(top: 20, left: 60, bottom: 0, right: 60))
-        titleLabel.font = UIFont.systemFont(ofSize: 24)
+        titleLabel.font = UIFont.systemFont(ofSize: 18)
         titleLabel.textAlignment = .center
         
         view.addSubview(scrollView)
@@ -41,19 +41,52 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             VCs[i].view.x = CGFloat(i) * view.width
             
             // Add a bar
-            let barWidth : CGFloat = (view.width - (CGFloat(VCs.count) + 1) * 10) / 3
-            let barOffsetX : CGFloat = 10 + CGFloat(i) * (barWidth + 10)
-            let bar : UIView = UIView(superview: view, corner: .topLeft, size: CGSize(width: barWidth, height: 5), offset: CGPoint(x: barOffsetX, y: 80))
-            print(bar.x)
+            
+            let barWidth : CGFloat = (view.width - 2 * 5) / 3
+            let barOffsetX : CGFloat = CGFloat(i) * (barWidth + 5)
+            let bar : UIView = UIView(superview: view, corner: .topLeft, size: CGSize(width: barWidth, height: 2), offset: CGPoint(x: barOffsetX, y: 80))
             bar.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
             scrollBars.append(bar)
         }
         
-        // Set initial values
-        titleLabel.text = VCs.first?.title
-        scrollBars.first?.backgroundColor = VCs.first?.color
+        setScrollVC(index: 0)
     }
     
-
+    func setScrollVC(index: Int) {
+        let vc: ScrollViewController = VCs[index]
+        
+        UIView.animate(withDuration: 0.2) { 
+            self.titleLabel.attributedText = NSAttributedString(string: (vc.title!).uppercased(), attributes: [NSKernAttributeName : 2])
+            for i in 0...self.scrollBars.count - 1 {
+                if i == index {
+                    self.scrollBars[i].backgroundColor = UIColor.black //vc.color
+                }
+                else {
+                    self.scrollBars[i].backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+                }
+            }
+        }
+    }
+    
+    // MARK: UIScrollViewDelegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        switch scrollView.contentOffset.x {
+        case 0:
+            setScrollVC(index: 0)
+            break
+            
+        case view.width:
+            setScrollVC(index: 1)
+            break
+            
+        case 2 * view.width:
+            setScrollVC(index: 2)
+            break
+            
+        default:
+            break
+        }
+    }
 }
 
