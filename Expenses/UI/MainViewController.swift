@@ -11,9 +11,9 @@ import RoamSwiftKit
 
 class MainViewController: UIViewController, UIScrollViewDelegate {
     
-    private let titleLabel : UILabel = UILabel()
-    private var scrollBars : [UIView] = []
-    private let scrollView : UIScrollView = UIScrollView()
+    private let titleLabel: UILabel = UILabel()
+    private var scrollBars: [UIView] = []
+    private let scrollView: UIScrollView = UIScrollView()
     
     private let VCs : [ScrollViewController] = [ExpensesViewController(), GoalsViewController(), AccountsViewController()]
     
@@ -21,12 +21,18 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         view.addSubview(titleLabel)
-        titleLabel.alignTo(edge: .top, length: 60, insets: UIEdgeInsets(top: 20, left: 60, bottom: 0, right: 60))
-        titleLabel.font = UIFont.systemFont(ofSize: 18)
+        titleLabel.alignTo(edge: .top, length: 20, insets: UIEdgeInsets(top: StatusBarHeight + Padding.small, left: 0, bottom: 0, right: 0))
+        titleLabel.textColor = UIColor.mainText
+        titleLabel.font = UIFont.systemFont(ofSize: 17)
         titleLabel.textAlignment = .center
         
+        let addButton: UIButton = UIButton(superview: view, corner: .topRight, size: CGSize(width: 16, height: 16), offset: CGPoint(x: 15, y: 34))
+        addButton.setImage(UIImage(named: "AddIcon"), for: .normal)
+        addButton.tintColor = UIColor.mainText
+        addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
+        
         view.addSubview(scrollView)
-        scrollView.fill(insets: UIEdgeInsets(top: 90, left: 0, bottom: 0, right: 0))
+        scrollView.fill(insets: UIEdgeInsets(top: titleLabel.y + titleLabel.height + Padding.medium, left: 0, bottom: 0, right: 0))
         scrollView.isPagingEnabled = true
         scrollView.canCancelContentTouches = true
         scrollView.delaysContentTouches = false
@@ -41,11 +47,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             VCs[i].view.x = CGFloat(i) * view.width
             
             // Add a bar
-            
             let barWidth : CGFloat = (view.width - 2 * 5) / 3
             let barOffsetX : CGFloat = CGFloat(i) * (barWidth + 5)
-            let bar : UIView = UIView(superview: view, corner: .topLeft, size: CGSize(width: barWidth, height: 2), offset: CGPoint(x: barOffsetX, y: 80))
-            bar.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+            let bar : UIView = UIView(superview: view, corner: .topLeft, size: CGSize(width: barWidth, height: 2), offset: CGPoint(x: barOffsetX, y: titleLabel.y + titleLabel.height + Padding.small))
             scrollBars.append(bar)
         }
         
@@ -59,13 +63,17 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             self.titleLabel.attributedText = NSAttributedString(string: (vc.title!).uppercased(), attributes: [NSKernAttributeName : 2])
             for i in 0...self.scrollBars.count - 1 {
                 if i == index {
-                    self.scrollBars[i].backgroundColor = UIColor.black //vc.color
+                    self.scrollBars[i].backgroundColor = UIColor.mainText
                 }
                 else {
-                    self.scrollBars[i].backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+                    self.scrollBars[i].backgroundColor = UIColor.line
                 }
             }
         }
+    }
+    
+    func addButtonPressed() {
+        present(AddAccountViewController(), animated: true, completion: nil)
     }
     
     // MARK: UIScrollViewDelegate
