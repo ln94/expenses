@@ -2,7 +2,7 @@
 //  Tag+CoreDataProperties.swift
 //  Expenses
 //
-//  Created by Lana on 12/03/17.
+//  Created by Lana on 14/03/17.
 //  Copyright © 2017 L. All rights reserved.
 //
 
@@ -17,9 +17,10 @@ extension Tag {
     }
 
     @NSManaged public var id: Int64
-    @NSManaged public var name: String
-    @NSManaged public var expenses: NSSet?
+    @NSManaged public var name: String?
     @NSManaged public var category: Category?
+    @NSManaged public var expenses: NSSet?
+    @NSManaged public var goals: NSSet?
 
 }
 
@@ -37,5 +38,22 @@ extension Tag {
 
     @objc(removeExpenses:)
     @NSManaged public func removeFromExpenses(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for goals
+extension Tag {
+
+    @objc(addGoalsObject:)
+    @NSManaged public func addToGoals(_ value: Goal)
+
+    @objc(removeGoalsObject:)
+    @NSManaged public func removeFromGoals(_ value: Goal)
+
+    @objc(addGoals:)
+    @NSManaged public func addToGoals(_ values: NSSet)
+
+    @objc(removeGoals:)
+    @NSManaged public func removeFromGoals(_ values: NSSet)
 
 }

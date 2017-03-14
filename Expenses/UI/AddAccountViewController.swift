@@ -8,70 +8,104 @@
 
 import UIKit
 
-class AddAccountViewController: UIViewController {
+class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
 
+    let nameField: UITextField = UITextField()
+    let balanceField: UITextField = UITextField()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = UIColor.white
         
-        // Top bar
-//        
-//        let titleLabel:UILabel = UILabel(superview: view, edge: .top, length: 20.0, insets: UIEdgeInsets(top: StatusBarHeight + Padding.small, left: 0, bottom: 0, right: 0))
-//        titleLabel.textColor = UIColor.mainText
-//        titleLabel.font = UIFont.systemFont(ofSize: 17)
-//        titleLabel.textAlignment = .center
-//        titleLabel.attributedText = NSAttributedString(string: "ADD ACCOUNT", attributes: [NSKernAttributeName : 2])
-//        
-//        let backButton: UIButton = UIButton(superview: view, corner: .topLeft, size: CGSize(width: 16.0, height: 16.0), offset: CGPoint(x: 15.0, y: 34.0))
-//        backButton.setImage(UIImage(named: Icon.back), for: .normal)
-//        backButton.tintColor = UIColor.mainText
-//        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
-//        
-//        let separator: UIView = UIView(superview: view, edge: .top, length: 1, insets: UIEdgeInsets(top: 65.0, left: 0, bottom: 0, right: 0))
-//        separator.backgroundColor = UIColor.line
-//        
-//        // Account name
-//        
-//        let nameLabel: UILabel = UILabel(superview: view, edge: .top, length: 16.0, insets: UIEdgeInsets(top: 97.0, left: Padding.medium, bottom: 0, right: 0))
-//        nameLabel.textColor = UIColor.subtitleText
-//        nameLabel.font = UIFont.systemFont(ofSize: 13)
-//        nameLabel.textAlignment = .left
-//        nameLabel.attributedText = NSAttributedString(string: "Account Name", attributes: [NSKernAttributeName: 2])
-//        
-//        let nameField: UITextField = UITextField(superview: view, edge: .top, length: 24.0, insets: UIEdgeInsets(top: 117.0, left: Padding.medium, bottom: 0, right: Padding.medium))
-//        nameField.textColor = UIColor.mainText
-//        nameField.tintColor = UIColor.mainText
-//        nameField.font = UIFont.systemFont(ofSize: 16)
-//        nameField.placeholder = "Name"
-//        
-//        let nameSeparator: UIView = UIView(superview: view, edge: .top, length: 1, insets: UIEdgeInsets(top: 151.0, left: Padding.medium, bottom: 0, right: 0))
-//        nameSeparator.backgroundColor = UIColor.line
-//        
-//        // Account balance
-//        
-//        let balanceLabel: UILabel = UILabel(superview: view, edge: .top, length: 16.0, insets: UIEdgeInsets(top: 182.0, left: Padding.medium, bottom: 0, right: 0))
-//        balanceLabel.textColor = UIColor.subtitleText
-//        balanceLabel.font = UIFont.systemFont(ofSize: 13)
-//        balanceLabel.textAlignment = .left
-//        balanceLabel.attributedText = NSAttributedString(string: "Account Balance", attributes: [NSKernAttributeName : 2])
-//        
-//        let balanceField: UITextField = UITextField(superview: view, edge: .top, length: 24.0, insets: UIEdgeInsets(top: 202.0, left: Padding.medium, bottom: 0, right: Padding.medium))
-//        balanceField.textColor = UIColor.mainText
-//        balanceField.tintColor = UIColor.mainText
-//        balanceField.font = UIFont.systemFont(ofSize: 16)
-//        balanceField.placeholder = "Balance"
-//        
-//        let balanceSeparator: UIView = UIView(superview: view, edge: .top, length: 1, insets: UIEdgeInsets(top: 236.0, left: Padding.medium, bottom: 0, right: 0))
-//        balanceSeparator.backgroundColor = UIColor.line
-//        
-//        // Save button
-//        
-//        let saveButton: UIButton = UIButton(superview: view, edge: .top, size: CGSize(width: 100, height: 40), offset: CGPoint(x: 0, y: 257))
-//        saveButton.setAttributedTitle(NSAttributedString(string: "SAVE", attributes: [NSForegroundColorAttributeName: UIColor.mainText, NSFontAttributeName: UIFont.systemFont(ofSize: 17),NSKernAttributeName : 2]), for: .normal)
+        title = "Add account"
+        
+        navigationType = .back
+        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        
+        // Account name
+        
+        let nameLabel: UILabel = UILabel()
+        nameLabel.addToSuperview(view, nextToView: separator, edge: .bottom, length: 20, insets: CGPoint(x: Padding.medium, y: Padding.large))
+        nameLabel.textColor = UIColor.subtitle
+        nameLabel.font = UIFont.subtitle
+        nameLabel.textAlignment = .left
+        nameLabel.attributedText = NSAttributedString(string: "Account Name", attributes: [NSKernAttributeName: 2])
+
+        nameField.addToSuperview(view, nextToView: nameLabel, edge: .bottom, length: 24, insets: CGPoint(x: 0, y: Padding.small))
+        nameField.textColor = UIColor.mainText
+        nameField.tintColor = UIColor.mainText
+        nameField.font = UIFont.mainText
+        nameField.placeholder = "Name"
+        nameField.returnKeyType = .next
+        nameField.delegate = self
+        
+        let nameSeparator: UIView = UIView()
+        nameSeparator.addToSuperview(view, nextToView: nameField, edge: .bottom, length: 1, insets: CGPoint(x: 0, y: Padding.medium))
+        nameSeparator.backgroundColor = UIColor.line
+
+        // Account balance
+        
+        let balanceLabel: UILabel = UILabel()
+        balanceLabel.addToSuperview(view, nextToView: nameSeparator, edge: .bottom, length: 20, insets: CGPoint(x: 0, y: Padding.large))
+        balanceLabel.textColor = UIColor.subtitle
+        balanceLabel.font = UIFont.subtitle
+        balanceLabel.textAlignment = .left
+        balanceLabel.attributedText = NSAttributedString(string: "Account Balance", attributes: [NSKernAttributeName : 2])
+        
+        balanceField.addToSuperview(view, nextToView: balanceLabel, edge: .bottom, length: 24, insets: CGPoint(x: 0, y: Padding.small))
+        balanceField.textColor = UIColor.mainText
+        balanceField.tintColor = UIColor.mainText
+        balanceField.font = UIFont.mainText
+        balanceField.placeholder = "0.00"
+        balanceField.keyboardType = .decimalPad
+        balanceField.delegate = self
+        
+        let balanceSeparator: UIView = UIView()
+        balanceSeparator.addToSuperview(view, nextToView: balanceField, edge: .bottom, length: 1, insets: CGPoint(x: 0, y: Padding.medium))
+        balanceSeparator.backgroundColor = UIColor.line
+        
+        // Save button
+        
+        let saveButton: UIButton = UIButton()
+        saveButton.addToSuperview(view, nextToView: balanceSeparator, edge: .bottom, size: ButtonSize, inset: Padding.medium)
+        saveButton.setAttributedTitle(NSAttributedString(string: "SAVE", attributes: [NSForegroundColorAttributeName: UIColor.mainText, NSFontAttributeName: UIFont.title, NSKernAttributeName : 2]), for: .normal)
+        saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
     }
     
     func backButtonPressed() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func saveButtonPressed() {
+        if let name: String = nameField.text {
+            Manager.createAccount(name: name, balance: 0)
+        }
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let oldText: NSString = (textField.text ?? "") as NSString
+        let newText: String = oldText.replacingCharacters(in: range, with: string)
+        
+        if textField == nameField {
+            return newText.characters.count <= 30
+        }
+        else {
+            // DEBUG: Add checks
+            if let index : String.Index = newText.range(of: ".")?.upperBound {
+                return newText.distance(from: index, to: newText.endIndex) <= 2
+            }
+            else {
+                return true
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == nameField {
+            balanceField.becomeFirstResponder()
+        }
+        
+        return true
     }
 }

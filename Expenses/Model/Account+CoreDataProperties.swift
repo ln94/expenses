@@ -2,7 +2,7 @@
 //  Account+CoreDataProperties.swift
 //  Expenses
 //
-//  Created by Lana on 12/03/17.
+//  Created by Lana on 14/03/17.
 //  Copyright © 2017 L. All rights reserved.
 //
 
@@ -17,27 +17,11 @@ extension Account {
     }
 
     @NSManaged public var id: Int64
-    @NSManaged public var name: String
-    @NSManaged public var total: Double
-    @NSManaged public var expenseTo: NSSet?
+    @NSManaged public var name: String?
+    @NSManaged public var total: Int16
+    @NSManaged public var initialBalance: Int16
     @NSManaged public var expenseFrom: NSSet?
-
-}
-
-// MARK: Generated accessors for expenseTo
-extension Account {
-
-    @objc(addExpenseToObject:)
-    @NSManaged public func addToExpenseTo(_ value: Expense)
-
-    @objc(removeExpenseToObject:)
-    @NSManaged public func removeFromExpenseTo(_ value: Expense)
-
-    @objc(addExpenseTo:)
-    @NSManaged public func addToExpenseTo(_ values: NSSet)
-
-    @objc(removeExpenseTo:)
-    @NSManaged public func removeFromExpenseTo(_ values: NSSet)
+    @NSManaged public var expenseTo: NSSet?
 
 }
 
@@ -55,5 +39,22 @@ extension Account {
 
     @objc(removeExpenseFrom:)
     @NSManaged public func removeFromExpenseFrom(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for expenseTo
+extension Account {
+
+    @objc(addExpenseToObject:)
+    @NSManaged public func addToExpenseTo(_ value: Expense)
+
+    @objc(removeExpenseToObject:)
+    @NSManaged public func removeFromExpenseTo(_ value: Expense)
+
+    @objc(addExpenseTo:)
+    @NSManaged public func addToExpenseTo(_ values: NSSet)
+
+    @objc(removeExpenseTo:)
+    @NSManaged public func removeFromExpenseTo(_ values: NSSet)
 
 }

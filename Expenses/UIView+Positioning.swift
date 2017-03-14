@@ -170,34 +170,34 @@ public extension UIView {
         }
     }
     
-    public func addToSuperview(_ superview: UIView, nextToView: UIView, edge: Edge, length: CGFloat, inset: CGFloat = 0) {
+    public func addToSuperview(_ superview: UIView, nextToView: UIView, edge: Edge, length: CGFloat, insets: CGPoint = CGPoint.zero) {
         
         superview.addSubview(self)
         
         switch edge {
             
         case .top:
-            self.size = CGSize(width: nextToView.width, height: length)
-            self.x = nextToView.x
-            self.y = nextToView.y - inset
+            self.size = CGSize(width: nextToView.width - 2 * insets.x, height: length)
+            self.x = nextToView.x + insets.x
+            self.y = nextToView.y - insets.y
             break
             
         case .bottom:
-            self.size = CGSize(width: nextToView.width, height: length)
-            self.x = nextToView.x
-            self.y = nextToView.bottom + inset
+            self.size = CGSize(width: nextToView.width - 2 * insets.x, height: length)
+            self.x = nextToView.x + insets.x
+            self.y = nextToView.bottom + insets.y
             break
             
         case .left:
-            self.size = CGSize(width: length, height: nextToView.height)
-            self.right = nextToView.x - inset
-            self.y = nextToView.y
+            self.size = CGSize(width: length, height: nextToView.height - 2 * insets.y)
+            self.right = nextToView.x - insets.x
+            self.y = nextToView.y + insets.y
             break
             
         case .right:
-            self.size = CGSize(width: length, height: nextToView.height)
-            self.x = nextToView.right + inset
-            self.y = nextToView.y
+            self.size = CGSize(width: length, height: nextToView.height - 2 * insets.y)
+            self.x = nextToView.right + insets.x
+            self.y = nextToView.y + insets.y
             break
         }
     }

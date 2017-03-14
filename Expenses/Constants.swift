@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 // MARK: - Dimensions
 
@@ -16,13 +17,18 @@ var StatusBarHeight: CGFloat {
 }
 
 var TopBarHeight: CGFloat {
-    return 44.0
+    return 44
+}
+
+var ButtonSize: CGSize {
+    return CGSize(width: 100, height: 44)
 }
 
 struct Padding {
-    static let tiny: CGFloat = 5.0
-    static let small: CGFloat = 12.0
-    static let medium: CGFloat = 20.0
+    static let tiny: CGFloat = 5
+    static let small: CGFloat = 10
+    static let medium: CGFloat = 20
+    static let large: CGFloat = 30
 }
 
 // MARK: - Colors
@@ -33,7 +39,7 @@ extension UIColor {
         return UIColor(red: 43.0/255.0, green: 43.0/255.0, blue: 43.0/255.0, alpha: 1.0)
     }
     
-    static var subtitleText: UIColor {
+    static var subtitle: UIColor {
         return UIColor(red: 95.0/255.0, green: 95.0/255.0, blue: 95.0/255.0, alpha: 1.0)
     }
     
@@ -49,8 +55,8 @@ extension UIColor {
 // MARK: - Icons
 
 struct Icon {
-    static let add: String = "AddIcon"
-    static let back: String = "BackIcon"
+    static let add: String = "Add"
+    static let back: String = "Back"
 }
 
 // MARK: - Fonts
@@ -58,6 +64,24 @@ struct Icon {
 extension UIFont {
     
     static var title: UIFont {
-        return UIFont.systemFont(ofSize: 18)
+        return UIFont.systemFont(ofSize: 17)
     }
+    
+    static var subtitle: UIFont {
+        return UIFont.systemFont(ofSize: 13)
+    }
+    
+    static var mainText: UIFont {
+        return UIFont.systemFont(ofSize: 15)
+    }
+}
+
+// MARK: - Core Data
+
+var Manager: DataManager {
+    return AppDelegate.shared.dataManger
+}
+
+var Context: NSManagedObjectContext {
+    return AppDelegate.shared.persistentContainer.viewContext
 }

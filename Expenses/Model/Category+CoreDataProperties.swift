@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  Expenses
 //
-//  Created by Lana on 12/03/17.
+//  Created by Lana on 14/03/17.
 //  Copyright © 2017 L. All rights reserved.
 //
 
@@ -16,10 +16,28 @@ extension Category {
         return NSFetchRequest<Category>(entityName: "Category");
     }
 
-    @NSManaged public var id: Int64
-    @NSManaged public var name: String
     @NSManaged public var color: NSObject?
+    @NSManaged public var id: Int64
+    @NSManaged public var name: String?
+    @NSManaged public var goals: NSSet?
     @NSManaged public var tags: NSSet?
+
+}
+
+// MARK: Generated accessors for goals
+extension Category {
+
+    @objc(addGoalsObject:)
+    @NSManaged public func addToGoals(_ value: Goal)
+
+    @objc(removeGoalsObject:)
+    @NSManaged public func removeFromGoals(_ value: Goal)
+
+    @objc(addGoals:)
+    @NSManaged public func addToGoals(_ values: NSSet)
+
+    @objc(removeGoals:)
+    @NSManaged public func removeFromGoals(_ values: NSSet)
 
 }
 
