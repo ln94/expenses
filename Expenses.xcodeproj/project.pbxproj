@@ -27,9 +27,10 @@
 		871CEAC41E6E3F6B00619F4A /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871CEAC11E6E3F6B00619F4A /* ExpensesViewController.swift */; };
 		871CEAC51E6E3F6B00619F4A /* GoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871CEAC21E6E3F6B00619F4A /* GoalsViewController.swift */; };
 		871CEAC61E6E3F6B00619F4A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871CEAC31E6E3F6B00619F4A /* MainViewController.swift */; };
-		871CEAC71E6E456D00619F4A /* RoamSwiftKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871CEAB41E6E360900619F4A /* RoamSwiftKit.framework */; };
-		871CEAC81E6E456D00619F4A /* RoamSwiftKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 871CEAB41E6E360900619F4A /* RoamSwiftKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		871CEAD11E6E690B00619F4A /* ScrollViewControllerTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871CEAD01E6E690B00619F4A /* ScrollViewControllerTemplate.swift */; };
+		87E882BD1E778C190002F800 /* UIView+Positioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E882BB1E778C190002F800 /* UIView+Positioning.swift */; };
+		87E882BE1E778C190002F800 /* UIVIew+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E882BC1E778C190002F800 /* UIVIew+Properties.swift */; };
+		87E882C01E778CB40002F800 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E882BF1E778CB40002F800 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,7 +40,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				871CEAC81E6E456D00619F4A /* RoamSwiftKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,12 +65,14 @@
 		871CEAA91E6E356200619F4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		871CEAAC1E6E356200619F4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		871CEAAE1E6E356200619F4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		871CEAB41E6E360900619F4A /* RoamSwiftKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RoamSwiftKit.framework; path = Expenses/RoamSwiftKit.framework; sourceTree = "<group>"; };
 		871CEABF1E6E3F5D00619F4A /* AccountsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountsViewController.swift; path = UI/AccountsViewController.swift; sourceTree = "<group>"; };
 		871CEAC11E6E3F6B00619F4A /* ExpensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpensesViewController.swift; path = UI/ExpensesViewController.swift; sourceTree = "<group>"; };
 		871CEAC21E6E3F6B00619F4A /* GoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalsViewController.swift; path = UI/GoalsViewController.swift; sourceTree = "<group>"; };
 		871CEAC31E6E3F6B00619F4A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = UI/MainViewController.swift; sourceTree = "<group>"; };
 		871CEAD01E6E690B00619F4A /* ScrollViewControllerTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollViewControllerTemplate.swift; path = UI/ScrollViewControllerTemplate.swift; sourceTree = "<group>"; };
+		87E882BB1E778C190002F800 /* UIView+Positioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Positioning.swift"; sourceTree = "<group>"; };
+		87E882BC1E778C190002F800 /* UIVIew+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIVIew+Properties.swift"; sourceTree = "<group>"; };
+		87E882BF1E778CB40002F800 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = UI/ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				871CEAC71E6E456D00619F4A /* RoamSwiftKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +116,6 @@
 			children = (
 				871CEA9E1E6E356200619F4A /* Expenses */,
 				871CEA9D1E6E356200619F4A /* Products */,
-				871CEAB41E6E360900619F4A /* RoamSwiftKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +135,7 @@
 				871CEAB81E6E365600619F4A /* UI */,
 				871CEAB61E6E362800619F4A /* Model */,
 				871CEAB71E6E363800619F4A /* Assets */,
+				87E882941E7772B40002F800 /* Toolkit */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -170,6 +171,7 @@
 		871CEAB81E6E365600619F4A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				87E882BF1E778CB40002F800 /* ViewController.swift */,
 				871CEAC31E6E3F6B00619F4A /* MainViewController.swift */,
 				871CEAD01E6E690B00619F4A /* ScrollViewControllerTemplate.swift */,
 				3FB575661E76A46E008B440D /* Expenses */,
@@ -177,6 +179,15 @@
 				3FB575641E76A461008B440D /* Account */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		87E882941E7772B40002F800 /* Toolkit */ = {
+			isa = PBXGroup;
+			children = (
+				87E882BB1E778C190002F800 /* UIView+Positioning.swift */,
+				87E882BC1E778C190002F800 /* UIVIew+Properties.swift */,
+			);
+			name = Toolkit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,7 +264,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FB575571E7514DE008B440D /* Tag+CoreDataProperties.swift in Sources */,
+				87E882BE1E778C190002F800 /* UIVIew+Properties.swift in Sources */,
 				871CEAA81E6E356200619F4A /* Expenses.xcdatamodeld in Sources */,
+				87E882BD1E778C190002F800 /* UIView+Positioning.swift in Sources */,
+				87E882C01E778CB40002F800 /* ViewController.swift in Sources */,
 				871CEAC41E6E3F6B00619F4A /* ExpensesViewController.swift in Sources */,
 				3FB575541E7514DE008B440D /* Expense+CoreDataClass.swift in Sources */,
 				871CEAA01E6E356200619F4A /* AppDelegate.swift in Sources */,
