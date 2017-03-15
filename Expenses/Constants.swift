@@ -50,6 +50,10 @@ extension UIColor {
     static var line: UIColor {
         return UIColor(red: 239.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0)
     }
+    
+    static var error: UIColor {
+        return UIColor(red: 231.0/255.0, green: 0.0/255.0, blue: 28.0/255.0, alpha: 1.0)
+    }
 }
 
 // MARK: - Icons
@@ -84,4 +88,17 @@ var Manager: DataManager {
 
 var Context: NSManagedObjectContext {
     return AppDelegate.shared.persistentContainer.viewContext
+}
+
+// MARK: - Amount
+
+extension Int64 {
+    
+    var double: Double {
+        return Double(self) / 100
+    }
+    
+    var string: String {
+        return String(format: "%.2f", arguments: [self.double])
+    }
 }

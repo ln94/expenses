@@ -9,8 +9,10 @@
 import UIKit
 
 class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
-
+    
+    let nameLabel: UILabel = UILabel()
     let nameField: UITextField = UITextField()
+    let balanceLabel: UILabel = UILabel()
     let balanceField: UITextField = UITextField()
         
     override func viewDidLoad() {
@@ -22,8 +24,7 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         
         // Account name
-        
-        let nameLabel: UILabel = UILabel()
+    
         nameLabel.addToSuperview(view, nextToView: separator, edge: .bottom, length: 20, insets: CGPoint(x: Padding.medium, y: Padding.large))
         nameLabel.textColor = UIColor.subtitle
         nameLabel.font = UIFont.subtitle
@@ -36,6 +37,8 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
         nameField.font = UIFont.mainText
         nameField.placeholder = "Name"
         nameField.returnKeyType = .next
+        nameField.autocorrectionType = .no
+        nameField.autocapitalizationType = .words
         nameField.delegate = self
         
         let nameSeparator: UIView = UIView()
@@ -44,7 +47,6 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
 
         // Account balance
         
-        let balanceLabel: UILabel = UILabel()
         balanceLabel.addToSuperview(view, nextToView: nameSeparator, edge: .bottom, length: 20, insets: CGPoint(x: 0, y: Padding.large))
         balanceLabel.textColor = UIColor.subtitle
         balanceLabel.font = UIFont.subtitle
@@ -55,7 +57,7 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
         balanceField.textColor = UIColor.mainText
         balanceField.tintColor = UIColor.mainText
         balanceField.font = UIFont.mainText
-        balanceField.placeholder = "0.00"
+        balanceField.placeholder = "$0.00"
         balanceField.keyboardType = .decimalPad
         balanceField.delegate = self
         
@@ -76,29 +78,107 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
     }
     
     func saveButtonPressed() {
-        if let name: String = nameField.text {
-            Manager.createAccount(name: name, balance: 0)
+        if let name = nameField.text, nameField.text != "" {
+            view.endEditing(true)
+            
+            // Get balance
+            if let balanceText: String = balanceField.text, balanceField.text != "" {
+                if let balance: Double = Double(balanceText.replacingOccurrences(of: "$", with: "")) {
+                    Manager.createAccount(name: name, balance: balance)
+                    dismiss(animated: true, completion: nil)
+                }
+                else {
+                    // Show balance error (shouldn't happen)
+                    balanceLabel.textColor = UIColor.error
+                    
+                    balanceField.shake()
+                    balanceField.becomeFirstResponder()
+                }
+            }
+            else {
+                Manager.createAccount(name: name, balance: 0)
+                dismiss(animated: true, completion: nil)
+            }
+        }
+        else {
+            // Show name error
+            nameLabel.textColor = UIColor.error
+            
+            nameField.shake()
+            nameField.becomeFirstResponder()
         }
     }
     
     // MARK: - UITextFieldDelegate
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let oldText: NSString = (textField.text ?? "") as NSString
-        let newText: String = oldText.replacingCharacters(in: range, with: string)
+        
+        let text: String = textField.text ?? ""
         
         if textField == nameField {
-            return newText.characters.count <= 30
+            
+            // Trim spaces in the beginning
+            if text == "" && string == " " {
+                return false
+            }
+            
+            // Return to subtitle color
+            if string != "" {
+                nameLabel.textColor = UIColor.subtitle
+            }
+            
+            // Limit to 30 characters
+            return text.replacingCharacters(in: range, with: string).characters.count <= 30
         }
         else {
-            // DEBUG: Add checks
+            // Keep $
+            if text.replacingCharacters(in: range, with: string) == "" {
+                return false
+            }
+            // Don't allow just .
+            if textField.text == "$" && string == "." {
+                textField.text = "$0."
+                return false
+            }
+            // Don't allow 01...
+            if textField.text == "$0" && string != "." && string != "" {
+                textField.text = "$" + string
+                return false
+            }
+            // Only one .
+            if text.characters.last == "." && string == "." {
+                return false
+            }
+            
+            // Limit to 10 character before . and 2 after
+            let newText = text.replacingCharacters(in: range, with: string)
             if let index : String.Index = newText.range(of: ".")?.upperBound {
-                return newText.distance(from: index, to: newText.endIndex) <= 2
+                return newText.distance(from: index, to: newText.endIndex) <= 2 && newText.characters.count <= 12
             }
             else {
-                return true
+                return newText.characters.count <= 10
             }
         }
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == balanceField && textField.text == "" {
+            textField.text = "$"
+        }
+    
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField == balanceField {
+            if textField.text == "$" {
+                textField.text = nil
+            }
+            else if textField.text?.characters.last == "." {
+                textField.text?.remove(at: (textField.text?.endIndex)!)
+            }
+        }
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -108,4 +188,5 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
         
         return true
     }
+    
 }

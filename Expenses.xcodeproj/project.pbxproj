@@ -9,7 +9,12 @@
 /* Begin PBXBuildFile section */
 		3F349CC01E77E222002B1B64 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F349CBF1E77E222002B1B64 /* NavigationViewController.swift */; };
 		3F349CC31E77F5FF002B1B64 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F349CC21E77F5FF002B1B64 /* DataManager.swift */; };
-		3F349CC61E77F922002B1B64 /* NSManagedObject+Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F349CC51E77F922002B1B64 /* NSManagedObject+Fetching.swift */; };
+		3F349CCF1E792C40002B1B64 /* NSManagedObject+Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F349CCB1E792C40002B1B64 /* NSManagedObject+Fetching.swift */; };
+		3F349CD01E792C40002B1B64 /* String+Editing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F349CCC1E792C40002B1B64 /* String+Editing.swift */; };
+		3F349CD11E792C40002B1B64 /* UIView+Positioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F349CCD1E792C40002B1B64 /* UIView+Positioning.swift */; };
+		3F349CD21E792C40002B1B64 /* UIVIew+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F349CCE1E792C40002B1B64 /* UIVIew+Properties.swift */; };
+		3F349CD41E79353E002B1B64 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F349CD31E79353E002B1B64 /* UIView+Animations.swift */; };
+		3F349CD61E7946B4002B1B64 /* AccountsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F349CD51E7946B4002B1B64 /* AccountsViewCell.swift */; };
 		3FB575521E7514DE008B440D /* Account+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB575481E7514DE008B440D /* Account+CoreDataClass.swift */; };
 		3FB575531E7514DE008B440D /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB575491E7514DE008B440D /* Account+CoreDataProperties.swift */; };
 		3FB575541E7514DE008B440D /* Expense+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5754A1E7514DE008B440D /* Expense+CoreDataClass.swift */; };
@@ -31,8 +36,6 @@
 		871CEAC51E6E3F6B00619F4A /* GoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871CEAC21E6E3F6B00619F4A /* GoalsViewController.swift */; };
 		871CEAC61E6E3F6B00619F4A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871CEAC31E6E3F6B00619F4A /* MainViewController.swift */; };
 		871CEAD11E6E690B00619F4A /* ScrollViewControllerTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871CEAD01E6E690B00619F4A /* ScrollViewControllerTemplate.swift */; };
-		87E882BD1E778C190002F800 /* UIView+Positioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E882BB1E778C190002F800 /* UIView+Positioning.swift */; };
-		87E882BE1E778C190002F800 /* UIVIew+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E882BC1E778C190002F800 /* UIVIew+Properties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,7 +54,12 @@
 /* Begin PBXFileReference section */
 		3F349CBF1E77E222002B1B64 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationViewController.swift; path = UI/NavigationViewController.swift; sourceTree = "<group>"; };
 		3F349CC21E77F5FF002B1B64 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataManager.swift; path = Managers/DataManager.swift; sourceTree = "<group>"; };
-		3F349CC51E77F922002B1B64 /* NSManagedObject+Fetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Fetching.swift"; sourceTree = "<group>"; };
+		3F349CCB1E792C40002B1B64 /* NSManagedObject+Fetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSManagedObject+Fetching.swift"; path = "Toolkit/NSManagedObject+Fetching.swift"; sourceTree = "<group>"; };
+		3F349CCC1E792C40002B1B64 /* String+Editing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Editing.swift"; path = "Toolkit/String+Editing.swift"; sourceTree = "<group>"; };
+		3F349CCD1E792C40002B1B64 /* UIView+Positioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Positioning.swift"; path = "Toolkit/UIView+Positioning.swift"; sourceTree = "<group>"; };
+		3F349CCE1E792C40002B1B64 /* UIVIew+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIVIew+Properties.swift"; path = "Toolkit/UIVIew+Properties.swift"; sourceTree = "<group>"; };
+		3F349CD31E79353E002B1B64 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Animations.swift"; path = "Toolkit/UIView+Animations.swift"; sourceTree = "<group>"; };
+		3F349CD51E7946B4002B1B64 /* AccountsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountsViewCell.swift; path = UI/AccountsViewCell.swift; sourceTree = "<group>"; };
 		3FB575481E7514DE008B440D /* Account+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+CoreDataClass.swift"; path = "Model/Account+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3FB575491E7514DE008B440D /* Account+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+CoreDataProperties.swift"; path = "Model/Account+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3FB5754A1E7514DE008B440D /* Expense+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Expense+CoreDataClass.swift"; path = "Model/Expense+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -75,8 +83,6 @@
 		871CEAC21E6E3F6B00619F4A /* GoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalsViewController.swift; path = UI/GoalsViewController.swift; sourceTree = "<group>"; };
 		871CEAC31E6E3F6B00619F4A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = UI/MainViewController.swift; sourceTree = "<group>"; };
 		871CEAD01E6E690B00619F4A /* ScrollViewControllerTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollViewControllerTemplate.swift; path = UI/ScrollViewControllerTemplate.swift; sourceTree = "<group>"; };
-		87E882BB1E778C190002F800 /* UIView+Positioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Positioning.swift"; sourceTree = "<group>"; };
-		87E882BC1E778C190002F800 /* UIVIew+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIVIew+Properties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				871CEABF1E6E3F5D00619F4A /* AccountsViewController.swift */,
+				3F349CD51E7946B4002B1B64 /* AccountsViewCell.swift */,
 				3FB575621E76A45B008B440D /* AddAccountViewController.swift */,
 			);
 			name = Account;
@@ -197,9 +204,11 @@
 		87E882941E7772B40002F800 /* Toolkit */ = {
 			isa = PBXGroup;
 			children = (
-				87E882BB1E778C190002F800 /* UIView+Positioning.swift */,
-				87E882BC1E778C190002F800 /* UIVIew+Properties.swift */,
-				3F349CC51E77F922002B1B64 /* NSManagedObject+Fetching.swift */,
+				3F349CD31E79353E002B1B64 /* UIView+Animations.swift */,
+				3F349CCB1E792C40002B1B64 /* NSManagedObject+Fetching.swift */,
+				3F349CCC1E792C40002B1B64 /* String+Editing.swift */,
+				3F349CCD1E792C40002B1B64 /* UIView+Positioning.swift */,
+				3F349CCE1E792C40002B1B64 /* UIVIew+Properties.swift */,
 			);
 			name = Toolkit;
 			sourceTree = "<group>";
@@ -278,13 +287,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FB575571E7514DE008B440D /* Tag+CoreDataProperties.swift in Sources */,
-				87E882BE1E778C190002F800 /* UIVIew+Properties.swift in Sources */,
 				871CEAA81E6E356200619F4A /* Expenses.xcdatamodeld in Sources */,
-				87E882BD1E778C190002F800 /* UIView+Positioning.swift in Sources */,
 				3F349CC01E77E222002B1B64 /* NavigationViewController.swift in Sources */,
 				3F349CC31E77F5FF002B1B64 /* DataManager.swift in Sources */,
 				871CEAC41E6E3F6B00619F4A /* ExpensesViewController.swift in Sources */,
+				3F349CD41E79353E002B1B64 /* UIView+Animations.swift in Sources */,
 				3FB575541E7514DE008B440D /* Expense+CoreDataClass.swift in Sources */,
+				3F349CD01E792C40002B1B64 /* String+Editing.swift in Sources */,
 				871CEAA01E6E356200619F4A /* AppDelegate.swift in Sources */,
 				3FB575591E7514DE008B440D /* Goal+CoreDataProperties.swift in Sources */,
 				871CEAD11E6E690B00619F4A /* ScrollViewControllerTemplate.swift in Sources */,
@@ -293,13 +302,16 @@
 				871CEAC01E6E3F5D00619F4A /* AccountsViewController.swift in Sources */,
 				3FB5755A1E7514DE008B440D /* Category+CoreDataClass.swift in Sources */,
 				3FB575581E7514DE008B440D /* Goal+CoreDataClass.swift in Sources */,
-				3F349CC61E77F922002B1B64 /* NSManagedObject+Fetching.swift in Sources */,
 				3FB575551E7514DE008B440D /* Expense+CoreDataProperties.swift in Sources */,
 				3FB575531E7514DE008B440D /* Account+CoreDataProperties.swift in Sources */,
 				871CEAC51E6E3F6B00619F4A /* GoalsViewController.swift in Sources */,
 				3FB575561E7514DE008B440D /* Tag+CoreDataClass.swift in Sources */,
 				3FB575521E7514DE008B440D /* Account+CoreDataClass.swift in Sources */,
+				3F349CD21E792C40002B1B64 /* UIVIew+Properties.swift in Sources */,
+				3F349CCF1E792C40002B1B64 /* NSManagedObject+Fetching.swift in Sources */,
 				3FB575631E76A45B008B440D /* AddAccountViewController.swift in Sources */,
+				3F349CD11E792C40002B1B64 /* UIView+Positioning.swift in Sources */,
+				3F349CD61E7946B4002B1B64 /* AccountsViewCell.swift in Sources */,
 				3FB575601E769EDD008B440D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

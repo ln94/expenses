@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  Expenses
 //
-//  Created by Lana on 14/03/17.
+//  Created by Lana on 15/03/17.
 //  Copyright © 2017 L. All rights reserved.
 //
 

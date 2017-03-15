@@ -11,16 +11,20 @@ import CoreData
 
 class DataManager: NSObject {
     
-    func createAccount(name: String, balance: Int16 = 0) {
-        let account: Account = Account(context: Context)
-        account.name = name
-        account.initialBalance = balance
+    func createAccount(name: String, balance: Double = 0) {
         
+        var id : Int64
         if let last: Account = Account.all(orderBy: "id", ascending: true, context: Context).last {
-            account.id = last.id + 1
+            id = last.id + 1
         }
         else {
-            account.id = 0
+            id = 0
         }
+        
+        let account: Account = Account(context: Context)
+        account.id = id
+        account.name = name
+        account.initialBalance = Int64(balance * 100)
+        account.balance = account.initialBalance
     }
 }

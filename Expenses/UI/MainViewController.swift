@@ -15,13 +15,15 @@ class MainViewController: NavigationViewController, UIScrollViewDelegate {
     
     private let VCs : [ScrollViewController] = [ExpensesViewController(), GoalsViewController(), AccountsViewController()]
     
+    private var _scrollIndex: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationType = .add
         addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
         
-        scrollBar.addToSuperview(view, nextToView: separator, edge: .bottom, size: CGSize(width: view.width / 3, height: 1.5), inset: -1.5)
+        scrollBar.addToSuperview(view, nextToView: separator, corner: .bottomLeft, size: CGSize(width: view.width / 3, height: 1.5), insets: CGPoint(x: 0, y: -1.5))
         scrollBar.backgroundColor = UIColor.mainText
         
         scrollView.fillSuperview(view, insets: UIEdgeInsets(top: scrollBar.bottom))
@@ -38,14 +40,28 @@ class MainViewController: NavigationViewController, UIScrollViewDelegate {
             VCs[i].view.x = CGFloat(i) * view.width
         }
         
-        setCurrentVC(index: 0)
+        // Initial
+        title = VCs[0].title
     }
 
-    func setCurrentVC(index: Int) {
-
-        UIView.animate(withDuration: 0.1) {
-            self.title = self.VCs[index].title
-            self.scrollBar.x = CGFloat(index) * self.scrollBar.width
+    var scrollIndex: Int {
+        get {
+            return _scrollIndex
+        }
+        set {
+            _scrollIndex = newValue
+            
+            scrollBar.x = CGFloat(newValue) * scrollBar.width
+            
+            UIView.animate(withDuration: 0.1, animations: {
+                self.titleLabel.alpha = 0
+                
+            }) { (_) in
+                self.title = self.VCs[newValue].title
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.titleLabel.alpha = 1
+                })
+            }
         }
     }
     
@@ -56,22 +72,25 @@ class MainViewController: NavigationViewController, UIScrollViewDelegate {
     // MARK: UIScrollViewDelegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollBar.x = scrollView.contentOffset.x / 3
+        
         switch scrollView.contentOffset.x {
         case 0:
-            setCurrentVC(index: 0)
+            self.scrollIndex = 0
             break
             
         case view.width:
-            setCurrentVC(index: 1)
+            self.scrollIndex = 1
             break
             
         case 2 * view.width:
-            setCurrentVC(index: 2)
+            self.scrollIndex = 2
             break
             
         default:
             break
         }
     }
+    
 }
 
