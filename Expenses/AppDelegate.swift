@@ -35,11 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
     
-    func createEntries() {
-        // Accounts
-        
-    }
-    
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {

@@ -25,11 +25,9 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
         
         // Account name
     
-        nameLabel.addToSuperview(view, nextToView: separator, edge: .bottom, length: 20, insets: CGPoint(x: Padding.medium, y: Padding.large))
-        nameLabel.textColor = UIColor.subtitle
-        nameLabel.font = UIFont.subtitle
+        nameLabel.addToSuperview(view, nextToView: topSeparator, edge: .bottom, length: 20, insets: CGPoint(x: Padding.medium, y: Padding.large))
         nameLabel.textAlignment = .left
-        nameLabel.attributedText = NSAttributedString(string: "Account Name", attributes: [NSKernAttributeName: 2])
+        nameLabel.attributedText = "Account Name".subtitleString()
 
         nameField.addToSuperview(view, nextToView: nameLabel, edge: .bottom, length: 24, insets: CGPoint(x: 0, y: Padding.small))
         nameField.textColor = UIColor.mainText
@@ -48,10 +46,8 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
         // Account balance
         
         balanceLabel.addToSuperview(view, nextToView: nameSeparator, edge: .bottom, length: 20, insets: CGPoint(x: 0, y: Padding.large))
-        balanceLabel.textColor = UIColor.subtitle
-        balanceLabel.font = UIFont.subtitle
         balanceLabel.textAlignment = .left
-        balanceLabel.attributedText = NSAttributedString(string: "Account Balance", attributes: [NSKernAttributeName : 2])
+        balanceLabel.attributedText = "Account Balance".subtitleString()
         
         balanceField.addToSuperview(view, nextToView: balanceLabel, edge: .bottom, length: 24, insets: CGPoint(x: 0, y: Padding.small))
         balanceField.textColor = UIColor.mainText
@@ -68,10 +64,21 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
         // Save button
         
         let saveButton: UIButton = UIButton()
-        saveButton.addToSuperview(view, nextToView: balanceSeparator, edge: .bottom, size: ButtonSize, inset: Padding.medium)
-        saveButton.setAttributedTitle(NSAttributedString(string: "SAVE", attributes: [NSForegroundColorAttributeName: UIColor.mainText, NSFontAttributeName: UIFont.title, NSKernAttributeName : 2]), for: .normal)
+        saveButton.addToSuperview(view, nextToView: balanceSeparator, edge: .bottom, size: ActionButtonSize, inset: Padding.medium)
+        saveButton.setAttributedTitle("Save".actionButtonString(), for: .normal)
         saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
+        
+        // GR
+        
+        let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // MARK: - Buttons
     
     func backButtonPressed() {
         dismiss(animated: true, completion: nil)

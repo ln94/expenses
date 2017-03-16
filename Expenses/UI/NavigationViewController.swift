@@ -22,7 +22,7 @@ class NavigationViewController: UIViewController {
     let titleLabel: UILabel = UILabel()
     let addButton: UIButton = UIButton()
     let backButton: UIButton = UIButton()
-    let separator: UIView = UIView()
+    let topSeparator: UIView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +42,8 @@ class NavigationViewController: UIViewController {
         backButton.setImage(UIImage(named: Icon.back), for: .normal)
         backButton.tintColor = UIColor.mainText
         
-        separator.addToSuperview(view, nextToView: titleLabel, edge: .bottom, length: 1)
-        separator.backgroundColor = UIColor.topBarLine
+        topSeparator.addToSuperview(view, nextToView: titleLabel, edge: .bottom, length: 1)
+        topSeparator.backgroundColor = UIColor.topBarLine
     }
     
     override var title: String? {

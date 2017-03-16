@@ -40,6 +40,9 @@ class AccountsViewController: ScrollViewController, UITableViewDataSource, UITab
         tableView.fillSuperview(view)
         tableView.register(AccountsViewCell.self, forCellReuseIdentifier: AccountsViewCell.identifier)
         tableView.rowHeight = AccountsViewCell.defaultHeight
+        tableView.allowsSelection = false
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.separatorColor = UIColor.line
         tableView.dataSource = self
         tableView.delegate = self
         

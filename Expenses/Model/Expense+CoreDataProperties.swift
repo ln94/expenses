@@ -25,4 +25,9 @@ extension Expense {
     @NSManaged public var accountTo: Account?
     @NSManaged public var tag: Tag?
 
+    enum ExpenseType: Int16 {
+        case expense = 0
+        case income
+        case move
+    }
 }

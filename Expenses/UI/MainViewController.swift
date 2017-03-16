@@ -23,7 +23,7 @@ class MainViewController: NavigationViewController, UIScrollViewDelegate {
         navigationType = .add
         addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
         
-        scrollBar.addToSuperview(view, nextToView: separator, corner: .bottomLeft, size: CGSize(width: view.width / 3, height: 1.5), insets: CGPoint(x: 0, y: -1.5))
+        scrollBar.addToSuperview(view, nextToView: topSeparator, corner: .bottomLeft, size: CGSize(width: view.width / 3, height: 1.5), insets: CGPoint(x: 0, y: -1.5))
         scrollBar.backgroundColor = UIColor.mainText
         
         scrollView.fillSuperview(view, insets: UIEdgeInsets(top: scrollBar.bottom))
@@ -66,7 +66,23 @@ class MainViewController: NavigationViewController, UIScrollViewDelegate {
     }
     
     func addButtonPressed() {
-        present(AddAccountViewController(), animated: true, completion: nil)
+        var vcToPresent: UIViewController? = nil
+        switch scrollIndex {
+            
+        case 0:
+            vcToPresent = AddExpenseViewController()
+            break
+            
+        case 2:
+            vcToPresent = AddAccountViewController()
+            break
+            
+        default:
+            break
+        }
+        if let vc = vcToPresent {
+            present(vc, animated: true, completion: nil)
+        }
     }
     
     // MARK: UIScrollViewDelegate

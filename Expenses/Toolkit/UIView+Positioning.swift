@@ -46,12 +46,16 @@ public extension UIView {
     public func fillSuperview(_ superview: UIView, insets: UIEdgeInsets = UIEdgeInsets.zero) {
         superview.addSubview(self)
         
+        setAutoresizingMask()
+        
         self.size = CGSize(width: superview.width - insets.left - insets.right, height: superview.height - insets.top - insets.bottom)
         self.x = insets.left
         self.y = insets.top
     }
     
     public func addToSuperview(_ superview: UIView, edge: Edge, size: CGSize, inset: CGFloat = 0) {
+        
+        setAutoresizingMask(for: edge)
         
         superview.addSubview(self)
         self.size = size
@@ -81,6 +85,8 @@ public extension UIView {
     }
     
     public func addToSuperview(_ superview: UIView, edge: Edge, length: CGFloat, insets: UIEdgeInsets = UIEdgeInsets.zero) {
+        
+        setAutoresizingMask(for: edge)
         
         superview.addSubview(self)
         
@@ -114,6 +120,8 @@ public extension UIView {
     
     public func addToSuperview(_ superview: UIView, corner: Corner, size: CGSize, insets: CGPoint = CGPoint.zero) {
         
+        setAutoresizingMask(for: corner)
+        
         superview.addSubview(self)
         self.size = size
         
@@ -143,6 +151,8 @@ public extension UIView {
     
     public func addToSuperview(_ superview: UIView, nextToView: UIView, edge: Edge, size: CGSize, inset: CGFloat = 0) {
         
+        setAutoresizingMask(for: edge)
+        
         superview.addSubview(self)
         self.size = size
         
@@ -171,6 +181,8 @@ public extension UIView {
     }
     
     public func addToSuperview(_ superview: UIView, nextToView: UIView, edge: Edge, length: CGFloat, insets: CGPoint = CGPoint.zero) {
+        
+        setAutoresizingMask(for: edge)
         
         superview.addSubview(self)
         
@@ -204,6 +216,8 @@ public extension UIView {
     
     public func addToSuperview(_ superview: UIView, nextToView: UIView, corner: Corner, size: CGSize, insets: CGPoint = CGPoint.zero) {
         
+        setAutoresizingMask(for: corner)
+        
         superview.addSubview(self)
         self.size = size
         
@@ -230,4 +244,45 @@ public extension UIView {
             break
         }
     }
+    
+    // MARK: - Autoresizing Mask
+    
+    private func setAutoresizingMask() {
+        
+        translatesAutoresizingMaskIntoConstraints = true
+        autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+    }
+    
+    private func setAutoresizingMask(for edge: Edge) {
+        
+        translatesAutoresizingMaskIntoConstraints = true
+        
+        switch edge {
+        case .left:
+            autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleBottomMargin]
+        case .right:
+            autoresizingMask = [UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleBottomMargin]
+        case .top:
+            autoresizingMask = [UIViewAutoresizing.flexibleBottomMargin, UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin]
+        case .bottom:
+            autoresizingMask = [UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin]
+        }
+    }
+    
+    private func setAutoresizingMask(for corner: Corner) {
+        
+        translatesAutoresizingMaskIntoConstraints = true
+        
+        switch corner {
+        case .topLeft:
+            autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleBottomMargin]
+        case .topRight:
+            autoresizingMask = [UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleBottomMargin]
+        case .bottomLeft:
+            autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin]
+        case .bottomRight:
+            autoresizingMask = [UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleTopMargin]
+        }
+    }
+    
 }

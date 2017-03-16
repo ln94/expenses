@@ -27,6 +27,9 @@
 		3FB5755B1E7514DE008B440D /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB575511E7514DE008B440D /* Category+CoreDataProperties.swift */; };
 		3FB575601E769EDD008B440D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5755F1E769EDD008B440D /* Constants.swift */; };
 		3FB575631E76A45B008B440D /* AddAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB575621E76A45B008B440D /* AddAccountViewController.swift */; };
+		8707C6231E7A99DD00E0432A /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707C6221E7A99DD00E0432A /* AddExpenseViewController.swift */; };
+		8707C6251E7AA3D100E0432A /* ExpenseFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707C6241E7AA3D100E0432A /* ExpenseFieldCell.swift */; };
+		8707C6271E7AA70400E0432A /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707C6261E7AA70400E0432A /* ClassExtensions.swift */; };
 		871CEAA01E6E356200619F4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871CEA9F1E6E356200619F4A /* AppDelegate.swift */; };
 		871CEAA81E6E356200619F4A /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 871CEAA61E6E356200619F4A /* Expenses.xcdatamodeld */; };
 		871CEAAA1E6E356200619F4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 871CEAA91E6E356200619F4A /* Assets.xcassets */; };
@@ -72,6 +75,9 @@
 		3FB575511E7514DE008B440D /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataProperties.swift"; path = "Model/Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3FB5755F1E769EDD008B440D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3FB575621E76A45B008B440D /* AddAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddAccountViewController.swift; path = UI/AddAccountViewController.swift; sourceTree = "<group>"; };
+		8707C6221E7A99DD00E0432A /* AddExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddExpenseViewController.swift; path = UI/AddExpenseViewController.swift; sourceTree = "<group>"; };
+		8707C6241E7AA3D100E0432A /* ExpenseFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpenseFieldCell.swift; path = UI/ExpenseFieldCell.swift; sourceTree = "<group>"; };
+		8707C6261E7AA70400E0432A /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		871CEA9C1E6E356200619F4A /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		871CEA9F1E6E356200619F4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		871CEAA71E6E356200619F4A /* Expenses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Expenses.xcdatamodel; sourceTree = "<group>"; };
@@ -104,14 +110,14 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
-		3FB575641E76A461008B440D /* Account */ = {
+		3FB575641E76A461008B440D /* Accounts */ = {
 			isa = PBXGroup;
 			children = (
 				871CEABF1E6E3F5D00619F4A /* AccountsViewController.swift */,
 				3F349CD51E7946B4002B1B64 /* AccountsViewCell.swift */,
 				3FB575621E76A45B008B440D /* AddAccountViewController.swift */,
 			);
-			name = Account;
+			name = Accounts;
 			sourceTree = "<group>";
 		};
 		3FB575651E76A467008B440D /* Goals */ = {
@@ -126,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				871CEAC11E6E3F6B00619F4A /* ExpensesViewController.swift */,
+				8707C6221E7A99DD00E0432A /* AddExpenseViewController.swift */,
+				8707C6241E7AA3D100E0432A /* ExpenseFieldCell.swift */,
 			);
 			name = Expenses;
 			sourceTree = "<group>";
@@ -151,6 +159,7 @@
 			children = (
 				871CEA9F1E6E356200619F4A /* AppDelegate.swift */,
 				3FB5755F1E769EDD008B440D /* Constants.swift */,
+				8707C6261E7AA70400E0432A /* ClassExtensions.swift */,
 				871CEAB81E6E365600619F4A /* UI */,
 				3F349CC41E77F605002B1B64 /* Managers */,
 				871CEAB61E6E362800619F4A /* Model */,
@@ -196,7 +205,7 @@
 				871CEAD01E6E690B00619F4A /* ScrollViewControllerTemplate.swift */,
 				3FB575661E76A46E008B440D /* Expenses */,
 				3FB575651E76A467008B440D /* Goals */,
-				3FB575641E76A461008B440D /* Account */,
+				3FB575641E76A461008B440D /* Accounts */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -289,16 +298,19 @@
 				3FB575571E7514DE008B440D /* Tag+CoreDataProperties.swift in Sources */,
 				871CEAA81E6E356200619F4A /* Expenses.xcdatamodeld in Sources */,
 				3F349CC01E77E222002B1B64 /* NavigationViewController.swift in Sources */,
+				8707C6251E7AA3D100E0432A /* ExpenseFieldCell.swift in Sources */,
 				3F349CC31E77F5FF002B1B64 /* DataManager.swift in Sources */,
 				871CEAC41E6E3F6B00619F4A /* ExpensesViewController.swift in Sources */,
 				3F349CD41E79353E002B1B64 /* UIView+Animations.swift in Sources */,
 				3FB575541E7514DE008B440D /* Expense+CoreDataClass.swift in Sources */,
 				3F349CD01E792C40002B1B64 /* String+Editing.swift in Sources */,
 				871CEAA01E6E356200619F4A /* AppDelegate.swift in Sources */,
+				8707C6271E7AA70400E0432A /* ClassExtensions.swift in Sources */,
 				3FB575591E7514DE008B440D /* Goal+CoreDataProperties.swift in Sources */,
 				871CEAD11E6E690B00619F4A /* ScrollViewControllerTemplate.swift in Sources */,
 				871CEAC61E6E3F6B00619F4A /* MainViewController.swift in Sources */,
 				3FB5755B1E7514DE008B440D /* Category+CoreDataProperties.swift in Sources */,
+				8707C6231E7A99DD00E0432A /* AddExpenseViewController.swift in Sources */,
 				871CEAC01E6E3F5D00619F4A /* AccountsViewController.swift in Sources */,
 				3FB5755A1E7514DE008B440D /* Category+CoreDataClass.swift in Sources */,
 				3FB575581E7514DE008B440D /* Goal+CoreDataClass.swift in Sources */,
