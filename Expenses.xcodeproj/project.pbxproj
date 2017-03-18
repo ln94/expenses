@@ -45,6 +45,8 @@
 		8739A2A71E7CA19C0031791F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8739A2A61E7CA19C0031791F /* CategoriesViewController.swift */; };
 		877E39EB1E7CD0C800BCD01D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877E39EA1E7CD0C800BCD01D /* TableViewCell.swift */; };
 		87AC7D481E7CCB8200EC54EE /* EditableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AC7D471E7CCB8200EC54EE /* EditableTableViewCell.swift */; };
+		87B998D41E7D0BA9002B20CA /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B998D31E7D0BA9002B20CA /* TagTableViewCell.swift */; };
+		87B998D81E7D1593002B20CA /* EditableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B998D71E7D1593002B20CA /* EditableTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,6 +103,8 @@
 		8739A2A61E7CA19C0031791F /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoriesViewController.swift; path = UI/CategoriesViewController.swift; sourceTree = "<group>"; };
 		877E39EA1E7CD0C800BCD01D /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewCell.swift; path = UI/TableViewCell.swift; sourceTree = "<group>"; };
 		87AC7D471E7CCB8200EC54EE /* EditableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditableTableViewCell.swift; path = UI/EditableTableViewCell.swift; sourceTree = "<group>"; };
+		87B998D31E7D0BA9002B20CA /* TagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagTableViewCell.swift; path = UI/TagTableViewCell.swift; sourceTree = "<group>"; };
+		87B998D71E7D1593002B20CA /* EditableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditableTableViewController.swift; path = UI/EditableTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,7 @@
 		8707C62B1E7C6D3800E0432A /* VC classes */ = {
 			isa = PBXGroup;
 			children = (
+				87B998D71E7D1593002B20CA /* EditableTableViewController.swift */,
 				3F349CBF1E77E222002B1B64 /* NavigationViewController.swift */,
 				871CEAD01E6E690B00619F4A /* ScrollViewControllerTemplate.swift */,
 			);
@@ -256,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				8739A2A11E7C7A4C0031791F /* TagsViewController.swift */,
+				87B998D31E7D0BA9002B20CA /* TagTableViewCell.swift */,
 			);
 			name = Tags;
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 				871CEAC41E6E3F6B00619F4A /* ExpensesViewController.swift in Sources */,
 				3F349CD41E79353E002B1B64 /* UIView+Animations.swift in Sources */,
 				3FB575541E7514DE008B440D /* Expense+CoreDataClass.swift in Sources */,
+				87B998D81E7D1593002B20CA /* EditableTableViewController.swift in Sources */,
 				3F349CD01E792C40002B1B64 /* String+Editing.swift in Sources */,
 				871CEAA01E6E356200619F4A /* AppDelegate.swift in Sources */,
 				8707C6271E7AA70400E0432A /* ClassExtensions.swift in Sources */,
@@ -378,6 +385,7 @@
 				8739A2A21E7C7A4C0031791F /* TagsViewController.swift in Sources */,
 				3FB575581E7514DE008B440D /* Goal+CoreDataClass.swift in Sources */,
 				3FB575551E7514DE008B440D /* Expense+CoreDataProperties.swift in Sources */,
+				87B998D41E7D0BA9002B20CA /* TagTableViewCell.swift in Sources */,
 				8707C6291E7C6BDA00E0432A /* SettingsViewController.swift in Sources */,
 				3FB575531E7514DE008B440D /* Account+CoreDataProperties.swift in Sources */,
 				871CEAC51E6E3F6B00619F4A /* GoalsViewController.swift in Sources */,

@@ -28,7 +28,7 @@ class EditableTableViewCell : TableViewCell {
         textField.isUserInteractionEnabled = false
     }
     
-    override var isEditing: Bool {
+    var isEditingTextField: Bool {
         get {
             return textField.isFirstResponder
         }

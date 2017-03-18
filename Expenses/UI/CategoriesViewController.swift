@@ -13,7 +13,7 @@ import NotificationCenter
 class CategoriesViewController: NavigationViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UITextFieldDelegate  {
     
     let tableView: TableView<EditableTableViewCell> = TableView<EditableTableViewCell>()
-    var editingCell: UITableViewCell?
+    var editingCell: EditableTableViewCell?
     
     let viewToAdd: UIView = UIView()
     let textFieldToAdd: UITextField = UITextField()
@@ -22,10 +22,11 @@ class CategoriesViewController: NavigationViewController, UITableViewDataSource,
     
     let tap: UITapGestureRecognizer = UITapGestureRecognizer()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "categories"
+        title = "Categories"
         navigationType = .both
         addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
         
@@ -47,7 +48,7 @@ class CategoriesViewController: NavigationViewController, UITableViewDataSource,
         
         // Add category view
         
-        viewToAdd.addToSuperview(view, nextToView: tableView, edge: .top, length: TableViewCell.defaultHeight)
+        viewToAdd.addToSuperview(view, nextToView: tableView, edge: .top, length: TableViewCell.self.defaultHeight)
         viewToAdd.backgroundColor = UIColor.selection
         viewToAdd.alpha = 0
         
@@ -84,7 +85,7 @@ class CategoriesViewController: NavigationViewController, UITableViewDataSource,
             
             // Finish editing cell
             if let cell = editingCell {
-                cell.isEditing = false
+                cell.isEditingTextField = false
                 editingCell = nil
             }
             
@@ -198,18 +199,24 @@ class CategoriesViewController: NavigationViewController, UITableViewDataSource,
         return cell
     }
     
-    // MARK: - UITableViewDelegate
+    // MARK: - UITableViewDelegate: Selecting
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if editingCell == nil {
-            // Start editing category name
-            editingCell = tableView.cellForRow(at: indexPath)
-            editingCell?.isEditing = true
+        if let cell = editingCell {
+            
+            // Stop editing cell and nullify it
+            if cell.isEditingTextField {
+                cell.isEditingTextField = false
+            }
+            else {
+                editingCell = nil
+            }
         }
-        else {
-            // Stoped editing cell and nullify it
-            editingCell = nil
+        else if let cell: EditableTableViewCell = tableView.cellForRow(at: indexPath) as? EditableTableViewCell {
+            // Start editing category name
+            editingCell = cell
+            cell.isEditingTextField = true
         }
     }
     
@@ -217,21 +224,38 @@ class CategoriesViewController: NavigationViewController, UITableViewDataSource,
         
         // Stop editing cell
         if let cell = editingCell {
-            cell.isEditing = false
+            cell.isEditingTextField = false
         }
+    }
+    
+    // MARK: - UITableViewDelegate: Swiping
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction: UITableViewRowAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action: UITableViewRowAction, indexPath: IndexPath) in
+            Context.delete(self.categories.object(at: indexPath))
+        }
+        
+        return [deleteAction]
     }
 
     // MARK: - NSFetchedResultsControllerDelegate
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        tableView.reloadData()
         
-        tableView.beginUpdates()
         switch type {
             
         case .insert:
-            if let newIndexPath = newIndexPath {
-                tableView.reloadRows(at: [newIndexPath], with: .automatic)
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .none)
                 tableView.contentInset.top = 0
                 showAddView(show: false, categoryAdded: true)
             }
@@ -239,22 +263,25 @@ class CategoriesViewController: NavigationViewController, UITableViewDataSource,
             
         case .delete:
             if let indexPath = indexPath {
-                tableView.reloadRows(at: [indexPath], with: .automatic)
+                tableView.deleteRows(at: [indexPath], with: .bottom)
+            }
+            break
+            
+        case .move:
+            if let indexPath = indexPath, let newIndexPath = newIndexPath {
+                tableView.moveRow(at: indexPath, to: newIndexPath)
             }
             break
             
         case .update:
-            if let indexPath = indexPath, let newIndexPath = newIndexPath {
-                tableView.reloadRows(at: [indexPath, newIndexPath], with: .automatic)
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .automatic)
             }
             break
-            
-        default:
-            tableView.reloadData()
-            break
         }
-        
-        tableView.endUpdates()
     }
     
     // MARK: - UITextFieldDelegate
@@ -304,7 +331,7 @@ class CategoriesViewController: NavigationViewController, UITableViewDataSource,
             }
         }
         else if let cell = editingCell {
-            cell.isEditing = false
+            cell.isEditingTextField = false
             editingCell = nil
         }
         

@@ -10,7 +10,10 @@ import UIKit
 
 class TableViewCell : UITableViewCell {
     
-    static let defaultHeight: CGFloat = 50
+    class var defaultHeight: CGFloat {
+        return 50
+    }
+    
     static let identifier: String = "Cell"
     
     let forwardButton: UIButton = UIButton()

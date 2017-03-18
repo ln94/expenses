@@ -21,11 +21,11 @@ class CoreDataManager: NSObject {
             id = 0
         }
         
-        let account: Account = Account(context: Context)
-        account.id = id
-        account.name = name
-        account.initialBalance = Int64(balance * 100)
-        account.balance = account.initialBalance
+        let object: Account = Account(context: Context)
+        object.id = id
+        object.name = name
+        object.initialBalance = Int64(balance * 100)
+        object.balance = object.initialBalance
     }
     
     func createCategory(name: String) {
@@ -37,9 +37,25 @@ class CoreDataManager: NSObject {
             id = 0
         }
         
-        let category: Category = Category(context: Context)
-        category.id = id
-        category.name = name
+        let object: Category = Category(context: Context)
+        object.id = id
+        object.name = name
+        
+        AppDelegate.shared.saveContext()
+    }
+    
+    func createTag(name: String) {
+        var id : Int64
+        if let last: Tag = Tag.all(orderBy: "id", ascending: true, context: Context).last {
+            id = last.id + 1
+        }
+        else {
+            id = 0
+        }
+        
+        let object: Tag = Tag(context: Context)
+        object.id = id
+        object.name = name
         
         AppDelegate.shared.saveContext()
     }

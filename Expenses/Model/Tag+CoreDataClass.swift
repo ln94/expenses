@@ -15,7 +15,7 @@ public class Tag: NSManagedObject {
     @nonobjc public class func fetchResultsController() -> NSFetchedResultsController<Tag> {
         
         let fetchRequest: NSFetchRequest = self.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: Context, sectionNameKeyPath: nil, cacheName: nil)
     }
     

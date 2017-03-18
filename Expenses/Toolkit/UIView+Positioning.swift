@@ -21,6 +21,13 @@ public extension UIEdgeInsets {
     }
 }
 
+public extension CGSize {
+    
+    public init(square: CGFloat) {
+        self.init(width: square, height: square)
+    }
+}
+
 public extension UIView {
     
     // Edges
@@ -30,6 +37,19 @@ public extension UIView {
         case right
         case bottom
         case left
+        
+        func opposite() -> Edge {
+            switch self {
+            case .top:
+                return .bottom
+            case .right:
+                return .left
+            case .bottom:
+                return .top
+            case .left:
+                return .right
+            }
+        }
     }
     
     // Corners
@@ -39,6 +59,19 @@ public extension UIView {
         case topRight
         case bottomLeft
         case bottomRight
+        
+        func opposite() -> Corner {
+            switch self {
+            case .topLeft:
+                return .bottomRight
+            case .topRight:
+                return .bottomLeft
+            case .bottomLeft:
+                return .topRight
+            case .bottomRight:
+                return .topLeft
+            }
+        }
     }
     
     // Positioning
@@ -151,7 +184,7 @@ public extension UIView {
     
     public func addToSuperview(_ superview: UIView, nextToView: UIView, edge: Edge, size: CGSize, inset: CGFloat = 0) {
         
-        setAutoresizingMask(for: edge)
+        setAutoresizingMask(for: edge.opposite())
         
         superview.addSubview(self)
         self.size = size
@@ -182,7 +215,7 @@ public extension UIView {
     
     public func addToSuperview(_ superview: UIView, nextToView: UIView, edge: Edge, length: CGFloat, insets: CGPoint = CGPoint.zero) {
         
-        setAutoresizingMask(for: edge)
+        setAutoresizingMask(for: edge.opposite())
         
         superview.addSubview(self)
         
@@ -216,7 +249,7 @@ public extension UIView {
     
     public func addToSuperview(_ superview: UIView, nextToView: UIView, corner: Corner, size: CGSize, insets: CGPoint = CGPoint.zero) {
         
-        setAutoresizingMask(for: corner)
+        setAutoresizingMask(for: corner.opposite())
         
         superview.addSubview(self)
         self.size = size
