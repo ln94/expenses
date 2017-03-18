@@ -19,31 +19,36 @@ class NavigationViewController: UIViewController {
     
     private var _navigationType: NavigationType = .both
     
+    let topBar: UIView = UIView()
     let titleLabel: UILabel = UILabel()
     let addButton: UIButton = UIButton()
     let backButton: UIButton = UIButton()
-    let topSeparator: UIView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.white
         
-        titleLabel.addToSuperview(view, edge: .top, length: TopBarHeight, insets: UIEdgeInsets(y: StatusBarHeight))
+        topBar.addToSuperview(view, edge: .top, length: StatusBarHeight + TopBarHeight)
+        topBar.backgroundColor = UIColor.white
+        
+        titleLabel.addToSuperview(topBar, edge: .top, length: TopBarHeight, insets: UIEdgeInsets(y: StatusBarHeight))
         titleLabel.textColor = UIColor.mainText
         titleLabel.font = UIFont.title
         titleLabel.textAlignment = .center
         
-        addButton.addToSuperview(view, corner: .topRight, size: CGSize(width: TopBarHeight, height: TopBarHeight), insets: CGPoint(x: 0, y: StatusBarHeight))
-        addButton.setImage(UIImage(named: Icon.add), for: .normal)
+        addButton.addToSuperview(topBar, corner: .topRight, size: CGSize(width: TopBarHeight, height: TopBarHeight), insets: CGPoint(x: 0, y: StatusBarHeight))
         addButton.tintColor = UIColor.mainText
+        addButton.setImage(Icon.add.image(), for: .normal)
         
-        backButton.addToSuperview(view, corner: .topLeft, size: CGSize(width: TopBarHeight, height: TopBarHeight), insets: CGPoint(x: 0, y: StatusBarHeight))
-        backButton.setImage(UIImage(named: Icon.back), for: .normal)
+        backButton.addToSuperview(topBar, corner: .topLeft, size: CGSize(width: TopBarHeight, height: TopBarHeight), insets: CGPoint(x: 0, y: StatusBarHeight))
+        backButton.setImage(Icon.back.image(), for: .normal)
         backButton.tintColor = UIColor.mainText
+        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         
-        topSeparator.addToSuperview(view, nextToView: titleLabel, edge: .bottom, length: 1)
-        topSeparator.backgroundColor = UIColor.topBarLine
+        let separator: UIView = UIView()
+        separator.addToSuperview(topBar, edge: .bottom, length: 1)
+        separator.backgroundColor = UIColor.topBarLine
     }
     
     override var title: String? {
@@ -52,7 +57,7 @@ class NavigationViewController: UIViewController {
         }
         set {
             if let title = newValue {
-                titleLabel.attributedText = NSAttributedString(string: title.uppercased(), attributes: [NSKernAttributeName : 2])
+                titleLabel.attributedText = title.titleString()
             }
             else {
                 titleLabel.text = nil
@@ -86,6 +91,12 @@ class NavigationViewController: UIViewController {
                 break
             }
         }
+    }
+    
+    // MARK: - Buttons
+    
+    func backButtonPressed() {
+        dismiss(animated: true, completion: nil)
     }
     
 }

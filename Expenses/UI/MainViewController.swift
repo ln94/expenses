@@ -10,6 +10,7 @@ import UIKit
 
 class MainViewController: NavigationViewController, UIScrollViewDelegate {
     
+    private let moreButton: UIButton = UIButton()
     private var scrollBar: UIView = UIView()
     private let scrollView: UIScrollView = UIScrollView()
     
@@ -23,7 +24,16 @@ class MainViewController: NavigationViewController, UIScrollViewDelegate {
         navigationType = .add
         addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
         
-        scrollBar.addToSuperview(view, nextToView: topSeparator, corner: .bottomLeft, size: CGSize(width: view.width / 3, height: 1.5), insets: CGPoint(x: 0, y: -1.5))
+        // More button
+        
+        moreButton.addToSuperview(view, corner: .topLeft, size: CGSize(width: TopBarHeight, height: TopBarHeight), insets: CGPoint(x: Padding.tiny, y: StatusBarHeight))
+        moreButton.setImage(Icon.more.image(), for: .normal)
+        moreButton.tintColor = UIColor.mainText
+        moreButton.addTarget(self, action: #selector(moreButtonPressed), for: .touchUpInside)
+        
+        // Scroll bar and view
+        
+        scrollBar.addToSuperview(view, nextToView: topBar, corner: .bottomLeft, size: CGSize(width: view.width / 3, height: 1.5), insets: CGPoint(x: 0, y: -1.5))
         scrollBar.backgroundColor = UIColor.mainText
         
         scrollView.fillSuperview(view, insets: UIEdgeInsets(top: scrollBar.bottom))
@@ -40,7 +50,7 @@ class MainViewController: NavigationViewController, UIScrollViewDelegate {
             VCs[i].view.x = CGFloat(i) * view.width
         }
         
-        // Initial
+        // Initial value
         title = VCs[0].title
     }
 
@@ -65,6 +75,8 @@ class MainViewController: NavigationViewController, UIScrollViewDelegate {
         }
     }
     
+    // MARK: - Buttons
+    
     func addButtonPressed() {
         var vcToPresent: UIViewController? = nil
         switch scrollIndex {
@@ -85,7 +97,11 @@ class MainViewController: NavigationViewController, UIScrollViewDelegate {
         }
     }
     
-    // MARK: UIScrollViewDelegate
+    func moreButtonPressed() {
+        present(SettingsViewController(), animated: true, completion: nil)
+    }
+    
+    // MARK: - UIScrollViewDelegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollBar.x = scrollView.contentOffset.x / 3

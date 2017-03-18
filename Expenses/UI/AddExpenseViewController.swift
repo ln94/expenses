@@ -9,12 +9,15 @@
 import UIKit
 
 public enum ExpenseField: Int {
+    
     case error = -1
+    
     case type = 0
     case account
     case tag
     case date
     case note
+    
     case count
     
     func title() -> String {
@@ -38,19 +41,17 @@ public enum ExpenseField: Int {
 class AddExpenseViewController: NavigationViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     
     let amountTextField: UITextField = UITextField()
-    let tableView: UITableView = UITableView()
+    let tableView: TableView<StaticTableViewCell> = TableView<StaticTableViewCell>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Add expense"
-        
         navigationType = .back
-        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         
         // Amount
         
-        amountTextField.addToSuperview(view, nextToView: topSeparator, edge: .top, length: 70, insets: CGPoint(x: Padding.small, y: 0))
+        amountTextField.addToSuperview(view, nextToView: topBar, edge: .top, length: 70, insets: CGPoint(x: Padding.small, y: 0))
         amountTextField.textColor = UIColor.mainText
         amountTextField.tintColor = UIColor.mainText
         amountTextField.font = UIFont.systemFont(ofSize: 24)
@@ -68,20 +69,11 @@ class AddExpenseViewController: NavigationViewController, UITextFieldDelegate, U
         
         tableView.fillSuperview(view, insets: UIEdgeInsets(top: amountSeparator.bottom))
         tableView.register(ExpenseFieldCell.self, forCellReuseIdentifier: ExpenseFieldCell.identifier)
-        tableView.rowHeight = AccountsViewCell.defaultHeight
-        tableView.allowsSelection = false
-        tableView.separatorInset = UIEdgeInsets.zero
-        tableView.separatorColor = UIColor.line
+        tableView.rowHeight = ExpenseFieldCell.defaultHeight
         tableView.dataSource = self
         tableView.delegate = self
 
         tableView.reloadData()
-    }
-    
-    // MARK: - Buttons
-
-    func backButtonPressed() {
-        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - UITableViewDataSource

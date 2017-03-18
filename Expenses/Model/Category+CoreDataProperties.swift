@@ -18,7 +18,7 @@ extension Category {
 
     @NSManaged public var color: NSObject?
     @NSManaged public var id: Int64
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var goals: NSSet?
     @NSManaged public var tags: NSSet?
 

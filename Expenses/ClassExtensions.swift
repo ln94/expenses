@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 // MARK: - Int: for amounts
 
@@ -22,9 +23,15 @@ extension Int64 {
     }
 }
 
-// MARK: 
+// MARK: - Attributed string
 
 extension String {
+    
+    func titleString() -> NSAttributedString {
+        return NSAttributedString(string: self.uppercased(), attributes: [NSForegroundColorAttributeName: UIColor.mainText,
+                                                                          NSFontAttributeName: UIFont.title,
+                                                                          NSKernAttributeName : 2])
+    }
     
     func subtitleString() -> NSAttributedString {
         return NSAttributedString(string: self, attributes: [NSForegroundColorAttributeName: UIColor.subtitle,
@@ -32,9 +39,21 @@ extension String {
                                                              NSKernAttributeName: 2])
     }
     
-    func actionButtonString() -> NSAttributedString {
-        return NSAttributedString(string: self.uppercased(), attributes: [NSForegroundColorAttributeName: UIColor.mainText,
-                                                               NSFontAttributeName: UIFont.title,
-                                                               NSKernAttributeName : 2])
+    func trimmed() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
+
+// MARK: - Text field
+
+extension UITextField {
+    
+    var isEmpty: Bool {
+        let text: String? = self.text?.trimmingCharacters(in: .whitespaces)
+        return text == nil || text == ""
+    }
+}
+
+
+
+

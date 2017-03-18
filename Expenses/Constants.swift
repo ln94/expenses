@@ -59,6 +59,10 @@ extension UIColor {
         return UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
     }
     
+    static var selection: UIColor {
+        return UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 251.0/255.0, alpha: 1)
+    }
+    
     static var error: UIColor {
         return UIColor(red: 231.0/255.0, green: 0.0/255.0, blue: 28.0/255.0, alpha: 1.0)
     }
@@ -83,15 +87,21 @@ extension UIFont {
 
 // MARK: - Icons
 
-struct Icon {
-    static let add: String = "Add"
-    static let back: String = "Back"
-    static let forward: String = "Forward"
+public enum Icon: String {
+    case add = "Add"
+    case back = "Back"
+    case forward = "Forward"
+    case more = "More"
+    case cancel = "Cancel"
+    
+    func image() -> UIImage? {
+        return UIImage(named: self.rawValue)?.withRenderingMode(.alwaysTemplate)
+    }
 }
 
 // MARK: - Core Data
 
-var Manager: DataManager {
+var DataManager: CoreDataManager {
     return AppDelegate.shared.dataManger
 }
 

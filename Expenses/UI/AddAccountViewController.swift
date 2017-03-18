@@ -19,13 +19,11 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         title = "Add account"
-        
         navigationType = .back
-        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         
         // Account name
     
-        nameLabel.addToSuperview(view, nextToView: topSeparator, edge: .bottom, length: 20, insets: CGPoint(x: Padding.medium, y: Padding.large))
+        nameLabel.addToSuperview(view, nextToView: topBar, edge: .bottom, length: 20, insets: CGPoint(x: Padding.medium, y: Padding.large))
         nameLabel.textAlignment = .left
         nameLabel.attributedText = "Account Name".subtitleString()
 
@@ -65,7 +63,7 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
         
         let saveButton: UIButton = UIButton()
         saveButton.addToSuperview(view, nextToView: balanceSeparator, edge: .bottom, size: ActionButtonSize, inset: Padding.medium)
-        saveButton.setAttributedTitle("Save".actionButtonString(), for: .normal)
+        saveButton.setAttributedTitle("Save".titleString(), for: .normal)
         saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         
         // GR
@@ -74,15 +72,7 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
     }
     
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     // MARK: - Buttons
-    
-    func backButtonPressed() {
-        dismiss(animated: true, completion: nil)
-    }
     
     func saveButtonPressed() {
         if let name = nameField.text, nameField.text != "" {
@@ -91,7 +81,7 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
             // Get balance
             if let balanceText: String = balanceField.text, balanceField.text != "" {
                 if let balance: Double = Double(balanceText.replacingOccurrences(of: "$", with: "")) {
-                    Manager.createAccount(name: name, balance: balance)
+                    DataManager.createAccount(name: name, balance: balance)
                     dismiss(animated: true, completion: nil)
                 }
                 else {
@@ -103,7 +93,7 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
                 }
             }
             else {
-                Manager.createAccount(name: name, balance: 0)
+                DataManager.createAccount(name: name, balance: 0)
                 dismiss(animated: true, completion: nil)
             }
         }
@@ -114,6 +104,12 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
             nameField.shake()
             nameField.becomeFirstResponder()
         }
+    }
+    
+    // MARK: - Actions
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     // MARK: - UITextFieldDelegate
@@ -177,7 +173,11 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField == balanceField {
+        if textField == nameField {
+            // Trim spaces in the end
+            textField.text = textField.text?.trimmingCharacters(in: .whitespaces)
+        }
+        else {
             if textField.text == "$" {
                 textField.text = nil
             }
@@ -185,12 +185,16 @@ class AddAccountViewController: NavigationViewController, UITextFieldDelegate {
                 textField.text?.remove(at: (textField.text?.endIndex)!)
             }
         }
+        
         return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == nameField {
             balanceField.becomeFirstResponder()
+        }
+        else {
+            textField.resignFirstResponder()
         }
         
         return true

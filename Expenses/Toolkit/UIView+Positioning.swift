@@ -191,7 +191,7 @@ public extension UIView {
         case .top:
             self.size = CGSize(width: nextToView.width - 2 * insets.x, height: length)
             self.x = nextToView.x + insets.x
-            self.y = nextToView.y - insets.y
+            self.y = nextToView.y - insets.y - length
             break
             
         case .bottom:
